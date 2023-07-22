@@ -30,12 +30,11 @@
 .CardStyled {
 width: 80%;
 margin-top:64px; 
-background: #F8F8F9;
-border-radius: 10px;
+background:#F8F8F9;
+border-radius:10px;
 
 margin-left:auto;
 margin-right:auto;
-
 
 @media only screen and (max-width: 480px) {
 

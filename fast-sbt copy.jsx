@@ -49,6 +49,25 @@ border-radius:4px;
  
 `;
  
+const cssFont = fetch(
+  "https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800"
+).body;
+const css = fetch(
+  "https://raw.githubusercontent.com/dokxo96/fastSbt/master/fastsbt.css?token=GHSAT0AAAAAACEQ4SVRD7BVOYKVKF5B4FEAZF36DWQ"
+).body;
+
+if (!cssFont || !css) return "";
+if (!state.theme) {
+  State.update({
+    theme: styled.div`
+    font-family: Manrope, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    ${cssFont}
+    ${css}
+`,
+
+  });
+}
+const Theme = state.theme;
 const NDCicon =
   "https://emerald-related-swordtail-341.mypinata.cloud/ipfs/QmP5CETfUsGFqdcsnrfPgUk3NvRh78TGZcX2srfCVFuvqi?_gl=1*faq1pt*_ga*Mzc5OTE2NDYyLjE2ODg1MTY4MTA.*_ga_5RMPXG14TE*MTY4OTg3Njc1OC4xMS4xLjE2ODk4NzY4MjYuNjAuMC4w";
 const CheckIcon =
@@ -150,17 +169,17 @@ const Submitform = () => {
   }
 };
 return (
-  < div class="ModalCard">
+  <Theme>< div class="ModalCard">
     <div class="Header">
       <img src={NDCicon} />
       <label class="Headerlabel">FAST-SBT</label>
     </div>
 
-    <div name="card" class="Cardstyled">
+    <div class="Cardstyled" name="card" >
       <div class=" BodyForm mx-auto">
         <div class="Rowcont">
           <div class="Colcont">
-            <H1 class="H1styled">DAO</H1>
+            <h1 class="H1styled">DAO</h1>
             <input class="InputStyled"
               type="text"
               placeholder="Input DAO contract address"
@@ -172,7 +191,7 @@ return (
             />
           </div>
           <div class="Colcont">
-            <H1 class="H1styled">Issuer</H1>
+            <h1 class="H1styled">Issuer</h1>
             <select class="Dropdown"
               placeholder="Input DAO contract address"
               value={state.Issuer_selected}
@@ -194,7 +213,7 @@ return (
           </div>
           { state.Issuer_selected==="showinput"?
            <div class="Colcont">
-           <H1 class="H1styled">Enter issuer</H1>
+           <h1 class="H1styled">Enter issuer</h1>
            <input class="InputStyled"
              type="text"
              placeholder="Input Issuer"
@@ -208,7 +227,7 @@ return (
          <></>
           }
           <div class="Colcont">
-            <H1 class="H1styled">Receiver</H1>
+            <h1 class="H1styled">Receiver</h1>
             <input class="InputStyled"
               type="text"
               placeholder="dokxo.near"
@@ -223,7 +242,7 @@ return (
 
         <div className="d-flex flex-column mt-2">
           <div class="d-flex">
-            <H1 class="H1styled">Metadata</H1>
+            <h1 class="H1styled">Metadata</h1>
             <CustomCheckbox
               onClick={() => {
                 State.update({ ischeckselected: !state.ischeckselected });
@@ -332,7 +351,7 @@ return (
           )}
 
           <div className="d-flex flex-column mt-2">
-            <H1 class="H1styled">Memo</H1>
+            <h1 class="H1styled">Memo</h1>
             <input class="InputStyled"
               type="text"
               placeholder="Write a memo"
@@ -365,4 +384,6 @@ return (
       </div>
     </div>
   </div>
+  </Theme>
+  
 );
